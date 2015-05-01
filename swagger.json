@@ -1,0 +1,371 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Events Example",
+		"version": "2015-05-01",
+		"title": "Events Example"
+	},
+	"host": "api.xmatters.com",
+	"basePath": "/api/2015-05-01/events",
+	"schemes": ["https"],
+	"paths": {
+		"/events": {
+			"get": {
+				"tags": ["Events"],
+				"summary": "Get events",
+				"description": "All the events you can eat",
+				"operationId": "getEvents",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Events"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/events/{eventId}": {
+			"get": {
+				"tags": ["Events"],
+				"summary": "Get Event",
+				"description": "An event",
+				"operationId": "getEvent",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "path",
+						"description": "Event identifier",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/events/{eventId}/notifications": {
+			"get": {
+				"tags": ["Events"],
+				"summary": "Get event notifications",
+				"description": "Get event notifications",
+				"operationId": "getEventNotifications",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "path",
+						"description": "Event identifier",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "after",
+						"in": "query",
+						"description": "Get notifications after this notification identifier in the collection (for pagination)",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "before",
+						"in": "query",
+						"description": "Get notifications before this notification identifier in the collection (for pagination)",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "limit",
+						"in": "query",
+						"description": "Page size to retreive from the collection (for pagination)",
+						"required": false,
+						"type": "integer",
+						"default": 100
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "Status of notifications",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Notifications"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Event": {
+			"type": "object",
+			"description": "A geographic area",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Unique identifier for the event"
+				},
+				"startTime": {
+					"type": "string",
+					"description": "The start time of the event",
+					"format": "date-time"
+				},
+				"endTime": {
+					"type": "string",
+					"description": "The end time of the event",
+					"format": "date-time"
+				},
+				"status": {
+					"type": "string",
+					"description": "The status of the event",
+					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
+				},
+				"pending": {
+					"$ref": "#/definitions/Notifications"
+				},
+				"delivered": {
+					"$ref": "#/definitions/Notifications"
+				},
+				"responded": {
+					"$ref": "#/definitions/Notifications"
+				},
+				"responseStats": {
+					"$ref": "#/definitions/ResponseStats"
+				}
+			},
+			"required": ["id", "startTime", "status", "pending", "delivered", "responded"]
+		},
+		"ResponseStats": {
+			"type": "object",
+			"description": "Event response statistics",
+			"properties": {
+				"NONE": {
+					"type": "integer",
+					"description": "Number of notifications with no response"
+				},
+				"ACCEPT": {
+					"type": "integer",
+					"description": "Number of notifications with an ACCEPT response"
+				},
+				"DECLINE": {
+					"type": "integer",
+					"description": "Number of notifications with a DECLINE response"
+				}
+			},
+			"required": ["NONE", "ACCEPT", "DECLINE"]
+		},
+		"Notifications": {
+			"type": "object",
+			"description": "A paginated result set of notifications",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Notification"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/NotificationsLinks"
+				}
+			},
+			"required": ["data", "count"]
+		},
+		"Notification": {
+			"type": "object",
+			"description": "An event notification",
+			"properties": {
+				"target": {
+					"type": "object",
+					"anyOf": [
+						{ "$ref": "#/definitions/Person" },
+						{ "$ref": "#/definitions/Device" }
+					],
+				},
+				"response": {
+					"type": "string",
+					"description": "Response status for this target",
+					"enum": ["NONE", "ACCEPT", "DECLINE"]
+				},
+				"notifications": {
+					"$ref": "#/definitions/Notifications"
+				}
+			},
+			"required": ["data", "count"]
+		},
+		"Person": {
+			"properties": {
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": ["name"]
+		},
+		"Device": {
+			"properties": {
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": ["name"]
+		},
+		"NotificationsLinks": {
+			"type": "object",
+			"description": "Paginated notifications collection links",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this page of the result set",
+					"format": "uri"
+				},
+				"event": {
+					"type": "string",
+					"description": "URL of the event to which this notification belongs",
+					"format": "uri"
+				},
+				"previous": {
+					"type": "string",
+					"description": "URL of the previous page of the result set",
+					"format": "uri"
+				},
+				"next": {
+					"type": "string",
+					"description": "URL of the next page of the result set",
+					"format": "uri"
+				}
+			},
+			"required": ["self"]
+		},
+		"Response": {
+			"description": "A coded API response",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"enum": [400,401,403,404,429,500]
+				},
+				"type": {
+					"type": "string"
+				},
+				"message": {
+					"type": "string"
+				}
+			},
+			"required": ["code", "type", "message"]
+		}
+	}
+}
