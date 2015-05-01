@@ -223,7 +223,7 @@
 					"description": "Total number of data items in the result set"
 				},
 				"links": {
-					"$ref": "#/definitions/EventLinks"
+					"$ref": "#/definitions/EventsLinks"
 				}
 			},
 			"required": ["data", "count"]
