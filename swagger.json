@@ -204,6 +204,52 @@
 		}
 	},
 	"definitions": {
+		"Events": {
+			"type": "object",
+			"description": "A paginated result set of events",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/EventLinks"
+				}
+			},
+			"required": ["data", "count"]
+		},
+		"EventsLinks": {
+			"type": "object",
+			"description": "Paginated event collection links",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this page of the result set",
+					"format": "uri"
+				},
+				"previous": {
+					"type": "string",
+					"description": "URL of the previous page of the result set",
+					"format": "uri"
+				},
+				"next": {
+					"type": "string",
+					"description": "URL of the next page of the result set",
+					"format": "uri"
+				}
+			},
+			"required": ["self"]
+		},
 		"Event": {
 			"type": "object",
 			"description": "A geographic area",
