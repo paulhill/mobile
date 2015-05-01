@@ -294,7 +294,7 @@
 					"anyOf": [
 						{ "$ref": "#/definitions/Person" },
 						{ "$ref": "#/definitions/Device" }
-					],
+					]
 				},
 				"response": {
 					"type": "string",
