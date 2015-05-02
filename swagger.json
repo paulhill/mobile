@@ -309,7 +309,7 @@
 					"enum": ["NEUTRAL","POSITIVE","NEGATIVE"]
 				}
 			},
-			"required": ["NONE", "ACCEPT", "DECLINE"]
+			"required": ["response", "count", "contribution"]
 		},
 		"Notifications": {
 			"type": "object",
@@ -333,7 +333,7 @@
 					"$ref": "#/definitions/NotificationsLinks"
 				}
 			},
-			"required": ["data", "count"]
+			"required": ["data", "count", "total", "links"]
 		},
 		"Notification": {
 			"type": "object",
@@ -355,7 +355,7 @@
 					"$ref": "#/definitions/Notifications"
 				}
 			},
-			"required": ["data", "count"]
+			"required": ["target", "response"]
 		},
 		"Person": {
 			"properties": {
@@ -398,7 +398,7 @@
 					"format": "uri"
 				}
 			},
-			"required": ["self"]
+			"required": ["self", "event"]
 		},
 		"Response": {
 			"description": "A coded API response",
@@ -409,10 +409,12 @@
 					"enum": [400,401,403,404,429,500]
 				},
 				"type": {
-					"type": "string"
+					"type": "string",
+					"description": "Custom error code"
 				},
 				"message": {
-					"type": "string"
+					"type": "string",
+					"description": "Error message"
 				}
 			},
 			"required": ["code", "type", "message"]
