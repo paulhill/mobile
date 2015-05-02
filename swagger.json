@@ -17,8 +17,7 @@
 				"operationId": "getEvents",
 				"consumes": ["application/json"],
 				"produces": ["application/json"],
-				"parameters": [
-				],
+				"parameters": [],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -226,7 +225,7 @@
 					"$ref": "#/definitions/EventsLinks"
 				}
 			},
-			"required": ["data", "count"]
+			"required": ["data", "count", "total"]
 		},
 		"EventsLinks": {
 			"type": "object",
@@ -289,7 +288,7 @@
 					}
 				}
 			},
-			"required": ["id", "startTime", "status", "pending", "delivered", "responded"]
+			"required": ["id", "startTime", "status", "pending", "delivered", "responded", "responseStats"]
 		},
 		"ResponseStat": {
 			"type": "object",
