@@ -283,26 +283,30 @@
 					"$ref": "#/definitions/Notifications"
 				},
 				"responseStats": {
-					"$ref": "#/definitions/ResponseStats"
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ResponseStat"
+					}
 				}
 			},
 			"required": ["id", "startTime", "status", "pending", "delivered", "responded"]
 		},
-		"ResponseStats": {
+		"ResponseStat": {
 			"type": "object",
 			"description": "Event response statistics",
 			"properties": {
-				"NONE": {
-					"type": "integer",
-					"description": "Number of notifications with no response"
+				"response": {
+					"type": "string",
+					"description": "Response type"
 				},
-				"ACCEPT": {
+				"count": {
 					"type": "integer",
-					"description": "Number of notifications with an ACCEPT response"
+					"description": "Count of this response type"
 				},
-				"DECLINE": {
-					"type": "integer",
-					"description": "Number of notifications with a DECLINE response"
+				"contribution": {
+					"type": "string",
+					"description": "Indicates how to treat this count in the UI",
+					"enum": ["NEUTRAL","POSITIVE","NEGATIVE"]
 				}
 			},
 			"required": ["NONE", "ACCEPT", "DECLINE"]
