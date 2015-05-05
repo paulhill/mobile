@@ -305,7 +305,7 @@
 					"$ref": "#/definitions/NotificationResponse"
 				}
 			},
-			"required": ["target", "response"]
+			"required": ["target", "sent", "response"]
 		},
 		"NotificationResponse": {
 			"type": "object",
@@ -316,12 +316,12 @@
 					"description": "The time the response was received",
 					"format": "date-time"
 				},
-				"response": {
+				"selection": {
 					"type": "string",
-					"description": "Response status for this notification"
+					"description": "Response selection for this notification"
 				}
 			},
-			"required": ["recieved", "response"]
+			"required": ["recieved", "selection"]
 		},
 		"Person": {
 			"properties": {
