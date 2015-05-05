@@ -229,6 +229,9 @@
 				"delivered": {
 					"$ref": "#/definitions/Notifications"
 				},
+				"failed": {
+					"$ref": "#/definitions/Notifications"
+				},
 				"responded": {
 					"$ref": "#/definitions/Notifications"
 				},
