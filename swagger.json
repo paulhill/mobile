@@ -311,7 +311,7 @@
 			"type": "object",
 			"description": "A notification response",
 			"properties": {
-				"recieved": {
+				"received": {
 					"type": "string",
 					"description": "The time the response was received",
 					"format": "date-time"
@@ -321,7 +321,7 @@
 					"description": "Response selection for this notification"
 				}
 			},
-			"required": ["recieved", "selection"]
+			"required": ["received", "selection"]
 		},
 		"Person": {
 			"properties": {
