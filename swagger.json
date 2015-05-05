@@ -9,55 +9,6 @@
 	"basePath": "/api/2015-05-01/events",
 	"schemes": ["https"],
 	"paths": {
-		"/events": {
-			"get": {
-				"tags": ["Events"],
-				"summary": "Get events",
-				"description": "All the events you can eat",
-				"operationId": "getEvents",
-				"consumes": ["application/json"],
-				"produces": ["application/json"],
-				"parameters": [],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Events"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					}
-				}
-			}
-		},
 		"/events/{eventId}": {
 			"get": {
 				"tags": ["Events"],
@@ -85,31 +36,31 @@
 					"400": {
 						"description": "Bad Request",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"401": {
 						"description": "Unauthorized",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"403": {
 						"description": "Forbidden",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"429": {
 						"description": "Too Many Requests",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"500": {
 						"description": "Internal Error",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					}
 				}
@@ -171,31 +122,31 @@
 					"400": {
 						"description": "Bad Request",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"401": {
 						"description": "Unauthorized",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"403": {
 						"description": "Forbidden",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"429": {
 						"description": "Too Many Requests",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					},
 					"500": {
 						"description": "Internal Error",
 						"schema": {
-							"$ref": "#/definitions/Response"
+							"$ref": "#/definitions/APIResponse"
 						}
 					}
 				}
@@ -345,16 +296,32 @@
 						{ "$ref": "#/definitions/Device" }
 					]
 				},
-				"response": {
+				"sent": {
 					"type": "string",
-					"description": "Response status for this target",
-					"enum": ["NONE", "ACCEPT", "DECLINE"]
+					"description": "The time the notifcation was sent",
+					"format": "date-time"
 				},
-				"notifications": {
-					"$ref": "#/definitions/Notifications"
+				"response": {
+					"$ref": "#/definitions/Person"
 				}
 			},
 			"required": ["target", "response"]
+		},
+		"NotificationResponse": {
+			"type": "object",
+			"description": "A notification response",
+			"properties": {
+				"recieved": {
+					"type": "string",
+					"description": "The time the response was received",
+					"format": "date-time"
+				},
+				"response": {
+					"type": "string",
+					"description": "Response status for this notification"
+				}
+			},
+			"required": ["recieved", "response"]
 		},
 		"Person": {
 			"properties": {
@@ -399,7 +366,7 @@
 			},
 			"required": ["self", "event"]
 		},
-		"Response": {
+		"APIResponse": {
 			"description": "A coded API response",
 			"properties": {
 				"code": {
