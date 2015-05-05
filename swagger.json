@@ -345,11 +345,7 @@
 			"description": "An event notification",
 			"properties": {
 				"target": {
-					"type": "object",
-					"anyOf": [
-						{ "$ref": "#/definitions/Person" },
-						{ "$ref": "#/definitions/Device" }
-					]
+					"$ref": "#/definitions/Recipient"
 				},
 				"sent": {
 					"type": "string",
@@ -378,15 +374,7 @@
 			},
 			"required": ["received", "selection"]
 		},
-		"Person": {
-			"properties": {
-				"name": {
-					"type": "string"
-				}
-			},
-			"required": ["name"]
-		},
-		"Device": {
+		"Recipient": {
 			"properties": {
 				"name": {
 					"type": "string"
