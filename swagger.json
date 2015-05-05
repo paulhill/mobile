@@ -349,7 +349,7 @@
 				},
 				"sent": {
 					"type": "string",
-					"description": "The time the notifcation was sent",
+					"description": "The time the notification was sent",
 					"format": "date-time"
 				},
 				"response": {
