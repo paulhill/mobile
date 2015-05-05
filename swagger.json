@@ -65,6 +65,63 @@
 					}
 				}
 			}
+		},
+		"/events/{eventId}/tracking": {
+			"get": {
+				"tags": ["Events"],
+				"summary": "Get event status information",
+				"description": "Event status information",
+				"operationId": "getEventTracking",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "path",
+						"description": "Event identifier",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/EventTracking"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/APIResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/APIResponse"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/APIResponse"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/APIResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/APIResponse"
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
@@ -143,6 +200,9 @@
 			"type": "object",
 			"description": "Event notifications",
 			"properties": {
+				"event": {
+					"$ref": "#/definitions/Event"
+				},
 				"pending": {
 					"$ref": "#/definitions/Notifications"
 				},
@@ -162,7 +222,7 @@
 					}
 				}
 			},
-			"required": ["pending", "delivered", "failed", "responded"]
+			"required": ["event", "pending", "delivered", "failed", "responded"]
 		},
 		"ResponseStat": {
 			"type": "object",
