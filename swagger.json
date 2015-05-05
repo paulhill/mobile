@@ -65,92 +65,6 @@
 					}
 				}
 			}
-		},
-		"/events/{eventId}/notifications": {
-			"get": {
-				"tags": ["Events"],
-				"summary": "Get event notifications",
-				"description": "Get event notifications",
-				"operationId": "getEventNotifications",
-				"consumes": ["application/json"],
-				"produces": ["application/json"],
-				"parameters": [
-					{
-						"name": "eventId",
-						"in": "path",
-						"description": "Event identifier",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "after",
-						"in": "query",
-						"description": "Get notifications after this notification identifier in the collection (for pagination)",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "before",
-						"in": "query",
-						"description": "Get notifications before this notification identifier in the collection (for pagination)",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "limit",
-						"in": "query",
-						"description": "Page size to retreive from the collection (for pagination)",
-						"required": false,
-						"type": "integer",
-						"default": 100
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Status of notifications",
-						"required": false,
-						"type": "string"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Notifications"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/APIResponse"
-						}
-					},
-					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/APIResponse"
-						}
-					},
-					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/APIResponse"
-						}
-					},
-					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/APIResponse"
-						}
-					},
-					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/APIResponse"
-						}
-					}
-				}
-			}
 		}
 	},
 	"definitions": {
@@ -265,8 +179,8 @@
 				"systemMessage": {
 					"type": "boolean"
 				},
-				"notifications": {
-					"$ref": "#/definitions/EventNotifications"
+				"tracking": {
+					"$ref": "#/definitions/EventTracking"
 				},
 				"responseStats": {
 					"type": "array",
@@ -275,9 +189,9 @@
 					}
 				}
 			},
-			"required": ["id", "startTime", "status", "notifications", "responseStats"]
+			"required": ["id", "startTime", "status"]
 		},
-		"EventNotifications": {
+		"EventTracking": {
 			"type": "object",
 			"description": "Event notifications",
 			"properties": {
