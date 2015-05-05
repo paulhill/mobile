@@ -302,7 +302,7 @@
 					"format": "date-time"
 				},
 				"response": {
-					"$ref": "#/definitions/Person"
+					"$ref": "#/definitions/NotificationResponse"
 				}
 			},
 			"required": ["target", "response"]
