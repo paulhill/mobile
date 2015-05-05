@@ -68,30 +68,6 @@
 		}
 	},
 	"definitions": {
-		"Events": {
-			"type": "object",
-			"description": "A paginated result set of events",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Event"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/EventsLinks"
-				}
-			},
-			"required": ["data", "count", "total"]
-		},
 		"EventsLinks": {
 			"type": "object",
 			"description": "Paginated event collection links",
