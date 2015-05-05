@@ -245,9 +245,9 @@
 			"type": "object",
 			"description": "Event response statistics",
 			"properties": {
-				"response": {
+				"selection": {
 					"type": "string",
-					"description": "Response type"
+					"description": "Response selection"
 				},
 				"count": {
 					"type": "integer",
@@ -259,7 +259,7 @@
 					"enum": ["NEUTRAL","POSITIVE","NEGATIVE"]
 				}
 			},
-			"required": ["response", "count", "contribution"]
+			"required": ["selection", "count", "contribution"]
 		},
 		"Notifications": {
 			"type": "object",
