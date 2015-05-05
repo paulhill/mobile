@@ -202,7 +202,7 @@
 		},
 		"Event": {
 			"type": "object",
-			"description": "A geographic area",
+			"description": "An event",
 			"properties": {
 				"id": {
 					"type": "string",
@@ -223,6 +223,64 @@
 					"description": "The status of the event",
 					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
 				},
+				"formName": {
+					"type": "string"
+				},
+				"engineName": {
+					"type": "string"
+				},
+				"senderTargetName": {
+					"type": "string"
+				},
+				"eventDomainName": {
+					"type": "string"
+				},
+				"incident": {
+					"type": "object"
+				},
+				"conferenceBridgeType": {
+					"type": "string"
+				},
+				"applicationsEvent": {
+					"type": "boolean"
+				},
+				"legacyScenario": {
+					"type": "boolean"
+				},
+				"legacyScenarioName": {
+					"type": "string"
+				},
+				"systemMessageType": {
+					"type": "string"
+				},
+				"archived": {
+					"type": "boolean"
+				},
+				"annotationCount": {
+					"type": "integer"
+				},
+				"latestAnnotationAge": {
+					"type": "integer"
+				},
+				"systemMessage": {
+					"type": "boolean"
+				},
+				"notifications": {
+					"$ref": "#/definitions/EventNotifications"
+				},
+				"responseStats": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ResponseStat"
+					}
+				}
+			},
+			"required": ["id", "startTime", "status", "notifications", "responseStats"]
+		},
+		"EventNotifications": {
+			"type": "object",
+			"description": "Event notifications",
+			"properties": {
 				"pending": {
 					"$ref": "#/definitions/Notifications"
 				},
@@ -234,15 +292,9 @@
 				},
 				"responded": {
 					"$ref": "#/definitions/Notifications"
-				},
-				"responseStats": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ResponseStat"
-					}
 				}
 			},
-			"required": ["id", "startTime", "status", "pending", "delivered", "responded", "responseStats"]
+			"required": ["pending", "delivered", "failed", "responded"]
 		},
 		"ResponseStat": {
 			"type": "object",
