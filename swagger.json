@@ -181,12 +181,6 @@
 				},
 				"tracking": {
 					"$ref": "#/definitions/EventTracking"
-				},
-				"responseStats": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ResponseStat"
-					}
 				}
 			},
 			"required": ["id", "startTime", "status"]
@@ -206,6 +200,12 @@
 				},
 				"responded": {
 					"$ref": "#/definitions/Notifications"
+				},
+				"responseStats": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ResponseStat"
+					}
 				}
 			},
 			"required": ["pending", "delivered", "failed", "responded"]
